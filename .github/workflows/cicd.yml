@@ -11,7 +11,7 @@ on:
 
 jobs:
   Continues-Integration_build_and_push:
-    runs-on: self hosted
+    runs-on: self-hosted
 
     steps:
     - name: Checkout repository
