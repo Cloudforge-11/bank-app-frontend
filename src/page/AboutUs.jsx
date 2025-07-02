@@ -25,9 +25,7 @@ const AboutUs = () => {
           height="auto"
           className="home-image"
         />
-        <p>
-
-        </p>
+  
        </div>
     </div>
   );
