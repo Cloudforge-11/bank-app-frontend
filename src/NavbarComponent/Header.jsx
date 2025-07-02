@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import logo from "../images/logo.png";
+// import logo from "../images/logo.png";
 import RoleNav from "./RoleNav";
+import cf from "../images/cloudforge.jpg"
 
 const Header = () => {
   return (
@@ -8,7 +9,7 @@ const Header = () => {
       <nav className="navbar navbar-expand-lg custom-bg text-color">
         <div className="container-fluid text-color">
           <img
-            src={logo}
+            src={cf}
             width="40"
             height="40"
             className="d-inline-block align-top"
