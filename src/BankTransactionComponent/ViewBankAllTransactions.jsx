@@ -12,8 +12,8 @@ const ViewBankAllTransactions = () => {
 
   const retrieveAllTransactions = async () => {
     const response = await axios.get(
-      "https://bankapi.cloudwitches.online/api/bank/transaction/all/customer/fetch?bankId=" +
-        bank.bank.id,
+      "https://bankapi.cloudforge11.online/api/bank/transaction/all/customer/fetch?bankId=" +
+      bank.bank.id,
       {
         headers: {
           Authorization: "Bearer " + bank_jwtToken, // Replace with your actual JWT token

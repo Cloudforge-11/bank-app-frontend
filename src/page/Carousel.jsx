@@ -1,4 +1,3 @@
-
 import carousel from "../images/banking_slider.png";
 import carousel2 from "../images/banking_slider2.png";
 import carousel3 from "../images/banking_slider3.png";
@@ -8,7 +7,7 @@ const Carousel = () => {
     <div
       id="carouselExampleCaptions"
       className="carousel slide"
-      data-bs-ride="false"
+      data-bs-ride="carousel" // change to "carousel" for auto-slide or keep "false" if manual only
     >
       <div className="carousel-indicators">
         <button
@@ -32,17 +31,19 @@ const Carousel = () => {
           aria-label="Slide 3"
         ></button>
       </div>
+
       <div className="carousel-inner">
         <div className="carousel-item active">
-          <img src={carousel} className="d-block w-100" alt="..." />
+          <img src={carousel} className="d-block w-100" alt="Digital banking interface" loading="lazy" />
         </div>
         <div className="carousel-item">
-          <img src={carousel2} className="d-block w-100" alt="..." />
+          <img src={carousel2} className="d-block w-100" alt="Secure transaction screen" loading="lazy" />
         </div>
         <div className="carousel-item">
-          <img src={carousel3} className="d-block w-100" alt="..." />
+          <img src={carousel3} className="d-block w-100" alt="Mobile banking access" loading="lazy" />
         </div>
       </div>
+
       <button
         className="carousel-control-prev"
         type="button"

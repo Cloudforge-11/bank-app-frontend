@@ -11,13 +11,13 @@ on:
 
 jobs:
   Continues-Integration_build_and_push:
-    runs-on: ubuntu-latest
+    runs-on: self hosted
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
       with:
-        repository: digitalwitchdemo/main_bank_app_frontend
+        repository: Cloudforge-11/bank-app-frontend
         ref: main
 
 
@@ -62,11 +62,11 @@ jobs:
           GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
           GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
       run: |
-         git clone https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/digitalwitchdemo/kubernetes-manifest.git
-         
+         git clone https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/Cloudforge-11/kubernetes-manifest.git
+
          cd kubernetes-manifest
-         git config --global user.email "chukwunonsosmartagbawo@gmail.com"
-         git config --global user.name "smartcloud2023"
+         git config --global user.email "arthurqueenie1@gmail.com"
+         git config --global user.name "queeniearthur"
 
          sed -i "s+${{ vars.ECR_REPO }}/bank-frontend:.*+${{ vars.ECR_REPO }}/bank-frontend:${{ github.run_number }}+g" ./bank-project/frontend.yaml
 

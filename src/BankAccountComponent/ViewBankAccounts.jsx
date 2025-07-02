@@ -23,8 +23,8 @@ const ViewBankAccounts = () => {
 
   const retrieveAllAccounts = async () => {
     const response = await axios.get(
-      "https://bankapi.cloudwitches.online/api/bank/account/fetch/bankwise?bankId=" +
-        bank.bank.id,
+      "https://bankapi.cloudforge11.onlinewitches.online/api/bank/account/fetch/bankwise?bankId=" +
+      bank.bank.id,
       {
         headers: {
           Authorization: "Bearer " + bank_jwtToken, // Replace with your actual JWT token
@@ -37,10 +37,10 @@ const ViewBankAccounts = () => {
 
   const retrieveAllAccountsByBankAccount = async () => {
     const response = await axios.get(
-      "https://bankapi.cloudwitches.online/api/bank/account/search?bankId=" +
-        bank.bank.id +
-        "&accountNumber=" +
-        accountNumber,
+      "https://bankapi.cloudforge11.onlinewitches.online/api/bank/account/search?bankId=" +
+      bank.bank.id +
+      "&accountNumber=" +
+      accountNumber,
       {
         headers: {
           Authorization: "Bearer " + bank_jwtToken, // Replace with your actual JWT token
@@ -89,7 +89,7 @@ const ViewBankAccounts = () => {
     updateBankAccountStatusRequest.accountId = accountId;
     updateBankAccountStatusRequest.status = "Open";
 
-    fetch("https://bankapi.cloudwitches.online/api/bank/account/update/status", {
+    fetch("https://bankapi.cloudforge11.onlinewitches.online/api/bank/account/update/status", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -157,7 +157,7 @@ const ViewBankAccounts = () => {
     updateBankAccountStatusRequest.accountId = accountId;
     updateBankAccountStatusRequest.status = "Lock";
 
-    fetch("https://bankapi.cloudwitches.online/api/bank/account/update/status", {
+    fetch("https://bankapi.cloudforge11.onlinewitches.online/api/bank/account/update/status", {
       method: "POST",
       headers: {
         Accept: "application/json",

@@ -1,4 +1,4 @@
-# Digital Witch Cloud Security / DevOps Project On Bank Managmenet App
+# Coudforge-11 Security / DevOps Project On Bank Managmenet App
 ## This is the frontend app which is coded and  Create React App comprising CSS, Html, js. 
 
 ## Note this app highly depend on the backend to run. ensure the backend is running fine. 

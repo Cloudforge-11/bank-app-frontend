@@ -21,9 +21,9 @@ const ViewAllBankCustomers = () => {
 
   const retrieveBankAllCustomerByName = async () => {
     const response = await axios.get(
-      "https://bankapi.cloudwitches.online/api/user/all/customer/search?" +
-        "customerName=" +
-        customerName,
+      "https://bankapi.cloudforge11.online/api/user/all/customer/search?" +
+      "customerName=" +
+      customerName,
       {
         headers: {
           Authorization: "Bearer " + admin_jwtToken, // Replace with your actual JWT token
@@ -36,7 +36,7 @@ const ViewAllBankCustomers = () => {
 
   const retrieveAllCustomers = async () => {
     const response = await axios.get(
-      "https://bankapi.cloudwitches.online/api/user/fetch/role?role=CUSTOMER",
+      "https://bankapi.cloudforge11.online/api/user/fetch/role?role=CUSTOMER",
       {
         headers: {
           Authorization: "Bearer " + admin_jwtToken, // Replace with your actual JWT token
@@ -81,7 +81,7 @@ const ViewAllBankCustomers = () => {
     updateUserStatusRequest.userId = userId;
     updateUserStatusRequest.status = "Active";
 
-    fetch("https://bankapi.cloudwitches.online/api/user/update/status", {
+    fetch("https://bankapi.cloudforge11.online/api/user/update/status", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -148,7 +148,7 @@ const ViewAllBankCustomers = () => {
     updateUserStatusRequest.userId = userId;
     updateUserStatusRequest.status = "Deactivated";
 
-    fetch("https://bankapi.cloudwitches.online/api/user/update/status", {
+    fetch("https://bankapi.cloudforge11.online/api/user/update/status", {
       method: "POST",
       headers: {
         Accept: "application/json",
