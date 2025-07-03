@@ -6,20 +6,22 @@ echo "Fixing permissions for /home/runner/_work..."
 mkdir -p /home/runner/_work
 chown -R runner:runner /home/runner/_work
 
-# Use REPO like "username/repo"
-TOKEN_URL="https://api.github.com/repos/Cloudforge-11/bank-app-frontend/actions/runners/registration-token"
+# Extract owner and repo from REPO_URL
+OWNER=$(echo "$REPO_URL" | cut -d'/' -f4)
+REPO=$(echo "$REPO_URL" | cut -d'/' -f5)
 
-echo "Requesting registration token for $REPO..."
+TOKEN_URL="https://api.github.com/repos/${OWNER}/${REPO}/actions/runners/registration-token"
+
+echo "Requesting registration token for $REPO_URL..."
 RUNNER_TOKEN=$(curl -s -X POST \
-  -H "Authorization: token ${GITHUB_PAT}" \
+  -H "Authorization: token ${GITHUB_TOKEN}" \
   "${TOKEN_URL}" | jq -r .token)
 
 echo "Registering runner: $RUNNER_NAME"
 ./config.sh --unattended \
-  --url "https://github.com/${REPO}" \
+  --url "${REPO_URL}" \
   --token "${RUNNER_TOKEN}" \
   --name "${RUNNER_NAME}" \
-  --labels self-hosted,docker,terraform \
   --work _work \
   --replace
 

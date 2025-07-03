@@ -71,7 +71,7 @@ jobs:
           ECR_REPO: ${{ env.ECR_REPO }}
           IMAGE_TAG: ${{ env.IMAGE_TAG }}
         run: |
-          git config user.email "queeniearthur1@gmail.com"
+          git config user.email "queeniearthur@gmail.com"
           git config user.name "queeniearthur"
 
           echo "Updating frontend.yaml image to: ${ECR_REGISTRY}/${ECR_REPO}:${IMAGE_TAG}"
