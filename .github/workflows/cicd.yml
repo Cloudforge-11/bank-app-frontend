@@ -51,27 +51,30 @@ jobs:
     - name: Clean up GitHub repo on runner
       run: rm -rf ./*
 
+  update_k8s_manifest:
+    runs-on: self-hosted
+    needs: build_and_push
 
-  
-  Continues-Update_k8s_manifest:
-    runs-on: ubuntu-latest
-    needs: Continues-Integration_build_and_push
     steps:
-    - name: Checkout repository.
-      env:
-          GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
-          GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
-      run: |
-         git clone https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/Cloudforge-11/kubernetes-manifest.git
+      - name: Clone Kubernetes manifest repo
+        run: |
+          git clone https://${{ secrets.GIT_USERNAME }}:${{ secrets.GIT_PASSWORD }}@github.com/techtribe6/t2-k8s-manifest.git
 
-         cd kubernetes-manifest
-         git config --global user.email "arthurqueenie1@gmail.com"
-         git config --global user.name "queeniearthur"
+      - name: Update image in frontend manifest and push
+        working-directory: t2-k8s-manifest
+        env:
+          ECR_REGISTRY: ${{ env.ECR_REGISTRY }}
+          ECR_REPO: ${{ env.ECR_REPO }}
+          IMAGE_TAG: ${{ env.IMAGE_TAG }}
+        run: |
+          git config user.email "stephenezekiel41@gmail.com"
+          git config user.name "Stephen"
 
-         sed -i "s+${{ vars.ECR_REPO }}/bank-frontend:.*+${{ vars.ECR_REPO }}/bank-frontend:${{ github.run_number }}+g" ./bank-project/frontend.yaml
+          echo "Updating frontend.yaml image to: ${ECR_REGISTRY}/${ECR_REPO}:${IMAGE_TAG}"
+          sed -i "s|${ECR_REGISTRY}/${ECR_REPO}:.*|${ECR_REGISTRY}/${ECR_REPO}:${IMAGE_TAG}|g" ./bank-project/frontend.yaml
 
-         cat ./bank-project/frontend.yaml | grep -q "${{ vars.ECR_REPO }}/bank-frontend:${{ github.run_number }}"
+          grep "${ECR_REGISTRY}/${ECR_REPO}:${IMAGE_TAG}" ./bank-project/frontend.yaml || true
 
-         git add bank-project/frontend.yaml
-         git commit -m "Update frontend image to version ${{ github.run_number }}"
-         git push origin main
+          git add ./bank-project/frontend.yaml
+          git commit -m "Update frontend image to version ${IMAGE_TAG}" || echo "No changes to commit"
+          git push origin main
