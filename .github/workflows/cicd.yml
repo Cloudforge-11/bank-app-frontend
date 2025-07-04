@@ -1,3 +1,5 @@
+# Bank Frontend CI/CD
+# This GitHub Actions workflow builds a Docker image for the bank frontend application, pushes it to
 name: Bank Frontend CI/CD
 
 on:
@@ -161,7 +163,7 @@ jobs:
           git config user.email "queeniearthur1@gmail.com"
           git config user.name "queeniearthur"
 
-          echo "🔄 Updating frontend.yaml image to ${ECR_REGISTRY}/${ECR_REPO}:${IMAGE_TAG}"
+          echo " Updating frontend.yaml image to ${ECR_REGISTRY}/${ECR_REPO}:${IMAGE_TAG}"
           sed -i "s|image: .*|image: ${ECR_REGISTRY}/${ECR_REPO}:${IMAGE_TAG}|" ./bank-project/frontend.yaml
 
           git add ./bank-project/frontend.yaml
