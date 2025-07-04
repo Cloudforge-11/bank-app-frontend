@@ -37,27 +37,28 @@ jobs:
 
       - name: Login to Amazon ECR
         run: |
-          aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin ${{ env.ECR_REGISTRY }}
+          aws ecr get-login-password --region $AWS_REGION | \
+          docker login --username AWS --password-stdin $ECR_REGISTRY
 
       - name: Build Docker image
         run: docker build -t bank-app-frontend .
 
       - name: Debug ECR values
         run: |
-          echo "ECR_REGISTRY: ${{ env.ECR_REGISTRY }}"
-          echo "ECR_REPO: ${{ env.ECR_REPO }}"
-          echo "IMAGE_TAG: ${{ env.IMAGE_TAG }}"
+          echo "🧪 ECR_REGISTRY: $ECR_REGISTRY"
+          echo "📦 ECR_REPO: $ECR_REPO"
+          echo "🏷️ IMAGE_TAG: $IMAGE_TAG"
 
       - name: Tag Docker image
-        run: docker tag bank-app-frontend ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPO }}:${{ env.IMAGE_TAG }}
+        run: docker tag bank-app-frontend $ECR_REGISTRY/$ECR_REPO:$IMAGE_TAG
 
       - name: Push Docker image to ECR
-        run: docker push ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPO }}:${{ env.IMAGE_TAG }}
+        run: docker push $ECR_REGISTRY/$ECR_REPO:$IMAGE_TAG
 
       - name: Clean up local Docker images
         run: |
           docker rmi bank-app-frontend || true
-          docker rmi ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPO }}:${{ env.IMAGE_TAG }} || true
+          docker rmi $ECR_REGISTRY/$ECR_REPO:$IMAGE_TAG || true
 
   update_k8s_manifest:
     runs-on: self-hosted
@@ -78,7 +79,7 @@ jobs:
           git config user.email "queeniearthur1@gmail.com"
           git config user.name "queeniearthur"
 
-          echo "Updating frontend.yaml image..."
+          echo "🔄 Updating frontend.yaml image to ${ECR_REGISTRY}/${ECR_REPO}:${IMAGE_TAG}"
           sed -i "s|image: .*|image: ${ECR_REGISTRY}/${ECR_REPO}:${IMAGE_TAG}|" ./bank-project/frontend.yaml
 
           git add ./bank-project/frontend.yaml
