@@ -1,5 +1,5 @@
-# Coudforge-11 Security / DevOps Project On Bank Managmenet App
-## This is the frontend app which is coded and  Create React App comprising CSS, Html, js. 
+# Coudforge-11 Security / DevOps Project On Bank Management App
+## This is the frontend app which is coded and  Created with React App comprising of CSS, Html, js. 
 
 ## Note this app highly depend on the backend to run. ensure the backend is running fine. 
 
