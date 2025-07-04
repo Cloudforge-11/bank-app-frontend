@@ -62,7 +62,7 @@ jobs:
     steps:
       - name: Clone Kubernetes manifest repo
         run: |
-          git clone https://${{ secrets.GIT_USERNAME }}:${{ secrets.GIT_PASSWORD }}@github.com/techtribe6/t2-k8s-manifest.git
+          git clone https://${{ secrets.GIT_USERNAME }}:${{ secrets.GIT_PASSWORD }}@github.com/Cloudforge-11/kubernetes-manifest.git
 
       - name: Update image in frontend manifest and push
         working-directory: t2-k8s-manifest
