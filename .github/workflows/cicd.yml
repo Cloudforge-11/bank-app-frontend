@@ -40,6 +40,12 @@ jobs:
       - name: Build Docker image
         run: docker build -t bank-app-frontend .
 
+      - name: Debug ECR values
+        run: |
+          echo "ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}"
+          echo "ECR_REPO: ${{ secrets.ECR_REPO }}"
+          echo "IMAGE_TAG: ${{ env.IMAGE_TAG }}"
+
       - name: Tag Docker image
         run: docker tag bank-app-frontend ${{ secrets.ECR_REGISTRY }}/${{ secrets.ECR_REPO }}:${{ env.IMAGE_TAG }}
 
