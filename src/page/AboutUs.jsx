@@ -1,4 +1,4 @@
-import teams from "../images/team.jpg"
+import teams from "../images/banner.jpg"
 
 
 const AboutUs = () => {
